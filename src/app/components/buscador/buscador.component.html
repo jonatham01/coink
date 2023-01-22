@@ -1,0 +1,156 @@
+<div class="main">
+    <div class="nav">
+        <img src="../../../assets/icons/coink.jpg" alt="COINK" class="left">
+        <div class="right">
+            <i class="material-icons">menu</i>
+            <p class="backoffice">BACKOFFICE</p>
+            <span class="material-symbols-outlined">
+                person
+                </span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+
+            <div class="user">
+                <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="i">
+                <i class="fa-solid fa-bars"></i>
+                <div class="name">
+                    <span class="material-symbols-outlined">lock</span>
+                    <p> Rick</p>
+                </div>
+            </div>
+
+            <div class="options">
+                <div class="option1">
+                    <div class="text">
+                        <p>Tarjetas Visa en dispensadores</p>
+                    </div>
+                </div>
+                <div class="option2">
+                   <div class="text">
+                        <p>Crear dispensador</p>
+                   </div>
+                </div>
+                <div class="option2">
+                   <div class="text">
+                        <p>Monitorear y editar dispensadores</p>
+                   </div>
+                </div>
+                <div class="option2 back">
+                    <div class="text">
+                        <p>Solicitud tarjetas</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <div class="titular">
+                <p>Tarjetas Visa dispensadores/</p>
+                <p>Solicitud tarjetas</p>
+            </div>
+
+            <h1>Solicitud Tarjetas</h1>
+
+            <div class="searchok" *ngIf="searchValidator==true">
+                <p class="buscar"> <i>Lupa</i>Buscar</p>
+
+                <div class="buscador">
+                    <div class="left-buscador">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" name="usuario" placeholder="Name" [(ngModel)]="name" >
+                    </div>
+                    <div class="right-buscador">
+                        <label for="tipo">Tipo</label>
+                        <input type="text" name="tipo" placeholder="Type" [(ngModel)]="type">
+                    </div>
+                </div>
+
+
+                <div class="filtros">
+                    <button (click)="cleanFilter()" >Limpiar filtros</button>
+                    <button (click)="toFilter()" >Buscar</button>
+                </div>
+    
+                <div class="right-btn">
+                    <button class="solicitar" (click)="toRequest()">Solicitar tarjetas</button>
+                </div>
+    
+                <div class="table">
+    
+                    <div class="header">
+                        <div class="user-table">
+                            <p>Usuario</p>
+                        </div>
+                        <div class="numero-table">
+                            <p>Tipo-especie</p>
+                        </div>
+                        <div class="tipo-table">
+                            <p>Genero</p>
+                        </div>
+                        <div class="estado-table">
+                            <p>Ubicación</p>
+                        </div>
+                    </div>
+    
+                    <div class="data-table" *ngFor="let data of characters.results">
+                        <p>{{data.name}}</p>
+                        <p>{{data.type}}-{{data.species}}</p>
+                        <p>{{data.gender}} </p>
+                        <p>{{data.location.name}}</p>
+                    </div>
+                    
+
+                    <div class="foot">
+                        <p class="text">Mostrando 20 de 120</p>
+                        <div class="enum">
+                            <p>< </p>
+                            <p (click)="toPagination(0,6)">1</p>
+                            <p (click)="toPagination(5,11)">2</p>
+                            <p (click)="toPagination(10,16)">3</p>
+                            <p (click)="toPagination(15,21)">4</p>
+                            <p (click)="toPagination(20,26)">5</p>
+                            <p>></p>
+                        </div>
+                    </div>
+
+
+                </div>
+                
+            </div>
+
+            <div class="request"  *ngIf="requestValidator==true">
+                <p>Solicitar tarjetas</p>
+                <label for="numero">Número de tarjetas que quiere recibir</label>
+                <input type="text" name="numero" id="numero" value="100">
+                <div class="buttons">
+                    <button  (click)="toCloseWindowRequest()">Cancelar</button>
+                    <button  (click)="doneRequest()">Solicitar</button>
+                </div>
+            </div>
+
+            <div class="request"  *ngIf="confirmValidator==true">
+                <p>CONFIRMACIÓN DE SOLICITUD DE TARJETAS</p>
+                <p>Esta a punto de solicitar 100 tarjetas, confirma esta acción para terminar tu pedido.</p>
+                
+                <div class="buttons">
+                    <button  (click)="toCloseWindowRequest()">Cancelar</button>
+                    <button  (click)="toDone()">Solicitar</button>
+                </div>
+            </div>
+
+            <div class="request"  *ngIf="okValidator==true">
+                <p>TU SOLICITUD FUE RECIBIDA</p>
+                <p>Solicitaste 100 tarjetas</p>
+            </div>
+
+          
+
+
+        </div>
+    </div>
+</div>
